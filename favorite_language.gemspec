@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = FavoriteLanguage::VERSION
   spec.authors       = ["Adam89"]
   spec.email         = ["adam.dev89@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = "Simple command line application"
+  spec.description   = "Fetch a users favourite programming language"
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,4 +20,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "octokit"
+  spec.add_development_dependency "thor"
+  spec.add_development_dependency "rack-test"
 end
