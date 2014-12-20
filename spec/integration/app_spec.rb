@@ -13,23 +13,13 @@ def capture_stdout(&block)
 end
 
 describe FavoriteLanguage::App do
+  let(:user_name) { "Adam89" }
   let(:app) { described_class.new.fetch(user_input) }
-  let(:user_input) { capture_stdout { $stdout.puts "Adam89" } }
+  let(:user_input) { capture_stdout { $stdout.puts user_name } }
 
-  context "when a valid github user_name is supplied" do
-    context "user has many repos" do
-      it "returns that users fav lang" do
-        expect(app).to eq "Adam89's favorite language is Ruby"
-      end
-    end
+  it "returns github usernames favorite langugage" do
+    stub_request_adam
+
+    expect(app).to eq "Adam89's favorite language is Ruby"
   end
-
-    context "user has no repos"
-      it "returns that user as a enterprise programmer"
-
-  context "when a invalid github user_name is supplied"
-    it "informs that user was not found"
-
-  context "when github api is hit too many times"
-    it "tells user to chill"
 end
