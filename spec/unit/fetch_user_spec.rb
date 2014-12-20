@@ -9,8 +9,8 @@ describe FavoriteLanguage::FetchUser do
           stub_request_adam
           language = described_class.new("Adam89").language
 
-          expect(language).to
-            eq "Adam89's favorite programming language is ruby"
+          expected = "Adam89's favorite programming language is Ruby"
+          expect(language).to eq expected
         end
 
         context "All of the repos do not have a programming language"
