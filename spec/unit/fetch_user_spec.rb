@@ -40,8 +40,17 @@ describe FavoriteLanguage::FetchUser do
         end
       end
 
-      context "user has no repos"
-        it "returns that user as a enterprise programmer"
+      context "user has no repos" do
+        let(:expected) do
+          "#{user_name} no repos in their profile maybe they are a recruiter"
+        end
+
+        it "returns that user as a recruiter" do
+          stub_request_no_repos
+
+          expect(fetch_user.language).to eq expected
+        end
+      end
 
       context "when github api is hit too many times"
         it "tells user to chill"

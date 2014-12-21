@@ -50,6 +50,11 @@ module FavoriteLanguage
           "is a polyglot favorite languages:",
           favorite_language.join(', ')
         ].join(' ')
+      elsif favorite_language.empty?
+        [
+          user_name,
+          "no repos in their profile maybe they are a recruiter"
+        ].join(' ')
       elsif favorite_language.first.nil?
         [
           user_name,
