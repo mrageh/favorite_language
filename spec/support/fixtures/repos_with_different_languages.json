@@ -1,9 +1,9 @@
 [
   {
-    "id":  16020537, "name": "exercism", "full_name": "Adam89/exercism", "owner": {}, "size": 512, "language": "Ruby"
+    "id": 16020537, "name": "exercism", "full_name": "Adam89/exercism", "owner": {}, "size": 512, "language": "JavaScript"
   },
   {
-    "id":  28174792, "name": "favorite_language", "full_name": "Adam89/favorite_language", "owner": { }, "size": 40, "language": "Ruby"
+    "id": 28174792, "name": "favorite_language", "full_name": "Adam89/favorite_language", "owner": { }, "size": 40, "language": "Ruby"
   },
   {
     "id": 28174792, "name": "duolingo", "full_name": "Adam89/duolingo", "owner": { }, "size": 100, "language": "Ruby"

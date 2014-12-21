@@ -19,7 +19,8 @@ describe FavoriteLanguage::App do
 
   it "returns github usernames favorite langugage" do
     stub_request_adam
+#"Adam89's favorite programming language is Ruby"
 
-    expect(app).to eq "Adam89's favorite programming language is Ruby"
+    expect {app}.to output.to_stdout
   end
 end

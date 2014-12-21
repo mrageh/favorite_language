@@ -1,5 +1,5 @@
 require "octokit"
-require "json"
+require "pry"
 
 module FavoriteLanguage
   class FetchUser
@@ -16,7 +16,7 @@ module FavoriteLanguage
     private
 
     def repos
-      JSON.parse(Octokit::Client.new.repositories(user_name))
+      Octokit::Client.new.repositories(user_name)
     end
 
     def num_of_repos_per_language
