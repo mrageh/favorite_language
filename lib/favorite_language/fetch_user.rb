@@ -14,9 +14,13 @@ module FavoriteLanguage
     end
 
     private
+    attr_reader :repos, :error_message
 
-    def repos
-      Octokit::Client.new.repositories(user_name)
+    def valid_user_name?
+      @repos ||= Octokit::Client.new.repositories(user_name)
+    rescue Octokit::NotFound => e
+      @error_message =  "#{user_name} not found"
+      false
     end
 
     def num_of_repos_per_language
@@ -33,8 +37,12 @@ module FavoriteLanguage
     end
 
     def fav_lang_text
-      pluralized_user_name = [user_name, "'s"].join
-      [pluralized_user_name, "favorite programming language is", favorite_language].join(' ')
+      if valid_user_name?
+        pluralized_user_name = [user_name, "'s"].join
+        [pluralized_user_name, "favorite programming language is", favorite_language].join(' ')
+      else
+        return error_message
+      end
     end
   end
 end
