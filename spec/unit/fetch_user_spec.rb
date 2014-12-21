@@ -15,8 +15,17 @@ describe FavoriteLanguage::FetchUser do
           expect(fetch_user.language).to eq expected
         end
 
-        context "All of the repos do not have a programming language"
-          it "returns that user has no favorite programming language"
+        context "All of the repos have null programming language" do
+          let(:expected) do
+            "#{user_name} has no favorite programming languages?"
+          end
+
+          it "returns that user has no favorite programming language" do
+            stub_request_null
+
+            expect(fetch_user.language).to eq expected
+          end
+        end
 
         context "Multiple favorite languages" do
           let(:expected) do

@@ -50,6 +50,11 @@ module FavoriteLanguage
           "is a polyglot favorite languages:",
           favorite_language.join(', ')
         ].join(' ')
+      elsif favorite_language.first.nil?
+        [
+          user_name,
+          "has no favorite programming languages?"
+        ].join(' ')
       else
         [
           pluralized_user_name,
