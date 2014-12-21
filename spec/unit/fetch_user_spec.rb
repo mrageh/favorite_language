@@ -52,8 +52,17 @@ describe FavoriteLanguage::FetchUser do
         end
       end
 
-      context "when github api is hit too many times"
-        it "tells user to chill"
+      context "when github api is hit too many times" do
+        let(:expected) do
+          "You've made too many requests chill!!"
+        end
+
+        it "tells user to chill" do
+          stub_request_api_limit
+
+          expect(fetch_user.language).to eq expected
+        end
+      end
     end
 
     context "when a invalid github user_name is supplied" do

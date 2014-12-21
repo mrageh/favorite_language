@@ -16,10 +16,13 @@ module FavoriteLanguage
     private
     attr_reader :repos, :error_message
 
-    def valid_user_name?
+    def valid?
       @repos ||= Octokit::Client.new.repositories(user_name)
     rescue Octokit::NotFound => e
       @error_message =  "#{user_name} not found"
+      false
+    rescue Octokit::TooManyRequests => e
+      @error_message =  "You've made too many requests chill!!"
       false
     end
 
@@ -35,7 +38,7 @@ module FavoriteLanguage
     end
 
     def fav_lang
-      if valid_user_name?
+      if valid?
         construct_message
       else
         return error_message

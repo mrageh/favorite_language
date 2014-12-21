@@ -68,7 +68,7 @@ module GithubApiHelper
           )
   end
 
-  def stub_request_no_repos
+  def stub_request_api_limit
     stub_request(:get, "https://api.github.com/users/Adam89/repos").
       with(:headers =>
           {
@@ -77,8 +77,13 @@ module GithubApiHelper
             'Content-Type'=>'application/json',
             'User-Agent'=>'Octokit Ruby Gem 3.7.0'
           }).to_return(
-            :status => 200,
-            :body => [],
+            :status => 403,
+            :body => [
+                {
+                message: "API rate limit exceeded for 87.112.89.6. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)",
+                documentation_url: "https://developer.github.com/v3/#rate-limiting"
+              }
+            ],
             :headers => {}
           )
   end
