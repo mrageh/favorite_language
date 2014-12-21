@@ -5,7 +5,7 @@ module FavoriteLanguage
 
     desc "fetch USERNAME", "USERNAME favorite language from github"
     def fetch(user_name)
-      FavoriteLanguage::FetchUser.new(user_name.chomp).language
+      $stdout.puts FavoriteLanguage::FetchUser.new(user_name.chomp).language
     end
   end
 end

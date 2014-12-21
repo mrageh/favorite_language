@@ -14,13 +14,13 @@ end
 
 describe FavoriteLanguage::App do
   let(:user_name) { "Adam89" }
+  let(:user_input) { capture_stdout { puts user_name } }
   let(:app) { described_class.new.fetch(user_input) }
-  let(:user_input) { capture_stdout { $stdout.puts user_name } }
 
   it "returns github usernames favorite langugage" do
     stub_request_adam
-#"Adam89's favorite programming language is Ruby"
 
-    expect {app}.to output.to_stdout
+    expected = "Adam89's favorite programming language is Ruby\n"
+    expect { app }.to output(expected).to_stdout
   end
 end
