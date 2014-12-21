@@ -10,7 +10,7 @@ module FavoriteLanguage
     end
 
     def language
-      fav_lang_text
+      fav_lang
     end
 
     private
@@ -31,17 +31,31 @@ module FavoriteLanguage
 
     def favorite_language
       max = num_of_repos_per_language.values.max
-      num_of_repos_per_language.select do |lang, num|
-        num == max
-      end.keys.first
+      num_of_repos_per_language.select { |lang, num| num == max }.keys
     end
 
-    def fav_lang_text
+    def fav_lang
       if valid_user_name?
-        pluralized_user_name = [user_name, "'s"].join
-        [pluralized_user_name, "favorite programming language is", favorite_language].join(' ')
+        construct_message
       else
         return error_message
+      end
+    end
+
+    def construct_message
+      pluralized_user_name = [user_name, "'s"].join
+      if favorite_language.count > 1
+        [
+          user_name,
+          "is a polyglot favorite languages:",
+          favorite_language.join(', ')
+        ].join(' ')
+      else
+        [
+          pluralized_user_name,
+          "favorite programming language is",
+          favorite_language
+        ].join(' ')
       end
     end
   end

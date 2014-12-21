@@ -18,8 +18,17 @@ describe FavoriteLanguage::FetchUser do
         context "All of the repos do not have a programming language"
           it "returns that user has no favorite programming language"
 
-        context "Two most popular repos have different programming languages"
-          it "returns both languages for polyglot"
+        context "Multiple favorite languages" do
+          let(:expected) do
+            "#{user_name} is a polyglot favorite languages: JavaScript, Ruby"
+          end
+
+          it "returns all languages for polyglot" do
+            stub_request_polyglot
+
+            expect(fetch_user.language).to eq expected
+          end
+        end
       end
 
       context "user has no repos"
