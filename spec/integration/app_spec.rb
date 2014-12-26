@@ -3,13 +3,14 @@ require "favorite_language"
 
 def capture_stdout(&block)
   original_stdout = $stdout
-  $stdout = fake = StringIO.new
+  $stdout = StringIO.new
   begin
     yield
+    result = $stdout.string
   ensure
     $stdout = original_stdout
   end
-  fake.string
+  result
 end
 
 describe FavoriteLanguage::App do
